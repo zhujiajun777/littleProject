@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  tomcat:
+    accept-count: 3000  #tomcat接受排队的最大数量
+    max-connections: 10000 #tomcat处理的最大连接数
+
+# begin:mybatis配置
+mybatis:
+  type-aliases-package: com.example.demo.model
+  mapper-locations: classpath*:mybatis/*.xml
+  cache-enabled: false
+mapper:
+  not-empty: false
+  identity: MYSQL
+# end:mybatis配置
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.14.83.8:3306/test?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 123456

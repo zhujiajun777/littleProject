@@ -2,6 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DemoUser;
 import com.example.demo.service.DemoService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +47,35 @@ public class DemoController {
     @RequestMapping("/user/update")
     public String toUpdate(){
         return "user/update";
+    }
+
+    @RequestMapping("/toLogin")
+    public String toLogin(){
+        return "login";
+    }
+
+    @RequestMapping("/login")
+    public String login( String username , String password , Model model){
+
+        //获取当前的用户
+        Subject subject = SecurityUtils.getSubject();
+
+        //封装用户的登陆信息
+        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+
+        try {
+            //执行登陆方法
+            subject.login(token);
+            return "index";
+        } catch (UnknownAccountException e) {
+            model.addAttribute("msg","用户名错误!");
+            return "login";
+        } catch (IncorrectCredentialsException e){
+            model.addAttribute("msg","密码错误!");
+            return "login";
+        }
+
+
     }
 
 }

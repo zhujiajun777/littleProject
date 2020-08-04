@@ -1,9 +1,8 @@
-package com.example.shiro.config;
+package com.example.demo.config;
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
@@ -25,8 +24,22 @@ public class UserRealm extends AuthorizingRealm {
     //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        System.out.println("执行了=>授权doGetAuthorizationInfo");
-        return null;
+        System.out.println("执行了=>认证doGetAuthenticationInfo");
+
+        //用户名 + 密码
+
+        String name = "admin";
+        String password = "admin";
+
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+
+        if (!name.equals(token.getUsername())){
+            //自动抛出异常
+            return null;
+        }
+
+        //shiro密码认证
+        return new SimpleAuthenticationInfo("",password,"");
     }
 
 }

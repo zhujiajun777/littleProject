@@ -12,4 +12,18 @@
 
     <artifactId>user-demo</artifactId>
 
+    <description>一个专门用于学习及测试的小项目</description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>little-common</groupId>
+            <artifactId>shiro</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+
+    </dependencies>
+
+
 </project>

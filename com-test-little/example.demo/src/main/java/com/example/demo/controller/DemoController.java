@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.DemoUser;
-import com.example.demo.service.DemoService;
+import com.example.demo.service.DemoUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -10,8 +10,12 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 /**
  * TODO: 类描述
@@ -23,12 +27,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DemoController {
 
     @Autowired
-    private DemoService demoService;
+    private DemoUserService demoService;
 
     @RequestMapping("/com/example/demo")
     @ResponseBody
-    public DemoUser demo(){
-        return demoService.selectOneDemoUser();
+    public DemoUser demo(@RequestBody Map<String,Object> map){
+
+        Integer id = (Integer) map.get("id");
+        String userName = (String) map.get("userName");
+
+        if (!"".equals(id.toString())){
+            return demoService.selectOneDemoUser(id);
+        }
+        if (!StringUtils.isEmpty(userName)){
+            return demoService.queryUserByName(userName);
+        }
+        return new DemoUser();
     }
 
     @RequestMapping({"/","/index"})

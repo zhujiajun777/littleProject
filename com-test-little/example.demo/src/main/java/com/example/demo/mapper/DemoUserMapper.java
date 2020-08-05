@@ -14,4 +14,7 @@ public interface DemoUserMapper {
     int updateByPrimaryKeySelective(DemoUser record);
 
     int updateByPrimaryKey(DemoUser record);
+
+    DemoUser selectUserByName(String userName);
+
 }

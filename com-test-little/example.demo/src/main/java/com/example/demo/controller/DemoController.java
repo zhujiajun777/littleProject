@@ -88,8 +88,12 @@ public class DemoController {
             model.addAttribute("msg","密码错误!");
             return "login";
         }
+    }
 
-
+    @RequestMapping("/noAuth")
+    @ResponseBody
+    public String unAuthorized(){
+        return "未授权午发访问!";
     }
 
 }

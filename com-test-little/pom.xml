@@ -19,6 +19,7 @@
         <module>example.demo</module>
         <module>shiro</module>
         <module>model</module>
+        <module>service</module>
     </modules>
 
     <!-- 版本号信息 -->

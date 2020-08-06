@@ -1,13 +1,15 @@
 package com.example.demo.config;
 
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.util.ThreadContext;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -43,17 +45,18 @@ public class ShiroConfig {
          *  perms   :   拥有对某个资源的权限才能访问
          *  role    :   拥有某个角色权限才能访问
          */
-        Map<String,String> filterMap = new HashMap<>();
+        Map<String,String> filterMap = new LinkedHashMap<>();
 
-        /*
-        filterMap.put("/user/add","authc");
-        filterMap.put("/user/update","authc");
-        */
+        filterMap.put("/user/add","perms[add]");
+        filterMap.put("/user/update","perms[update]");
+
         filterMap.put("/user/*","authc");
-
 
         //添加具体的权限控制
         factoryBean.setFilterChainDefinitionMap(filterMap);
+
+        //设置无权登陆页面
+        factoryBean.setUnauthorizedUrl("/noAuth");
 
         //设置的登陆链接
         factoryBean.setLoginUrl("/toLogin");

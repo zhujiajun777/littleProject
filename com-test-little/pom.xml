@@ -16,7 +16,7 @@
     <version>0.0.1</version>
 
     <modules>
-        <module>example.demo</module>
+        <module>user-demo</module>
         <module>shiro</module>
         <module>model</module>
         <module>service</module>
@@ -31,11 +31,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot</artifactId>
-            <version>${boot-mybatis.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

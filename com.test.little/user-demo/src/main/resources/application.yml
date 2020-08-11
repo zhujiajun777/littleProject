@@ -15,8 +15,16 @@ mapper:
 # end:mybatis配置
 
 spring:
+  # 数据库连接信息
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://106.14.83.8:3306/test?characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: 123456
+  # redis连接信息
+  redis:
+    host: 106.14.83.8
+    port: 6379
+    password: redisroot
+
+

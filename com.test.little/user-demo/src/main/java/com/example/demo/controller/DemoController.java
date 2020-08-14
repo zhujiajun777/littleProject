@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -30,6 +31,7 @@ import java.util.Map;
  */
 @Controller
 @Api("测试接口类")
+@Slf4j
 public class DemoController {
 
     @Autowired
@@ -49,13 +51,13 @@ public class DemoController {
         Integer id = (Integer) map.get("id");
         String userName = (String) map.get("userName");
         redisTemplate.boundValueOps("user").set(demoService.selectOneDemoUser(id).toString());
-        System.out.println("==========>user信息存入了redis缓存!");
+        log.info("==========>user信息存入了redis缓存!");
 
-        System.out.println("----------------------------->" + demoService.selectOneDemoUser(id));
+        log.info("----------------------------->" + demoService.selectOneDemoUser(id));
 
         Object user = redisTemplate.boundValueOps("user").get();
-        System.out.println("==========>从redis缓存的中获取user信息:");
-        System.out.println(user.toString());
+        log.info("==========>从redis缓存的中获取user信息:");
+        log.info(user.toString());
 
         if (!"".equals(id.toString())){
             return demoService.selectOneDemoUser(id);

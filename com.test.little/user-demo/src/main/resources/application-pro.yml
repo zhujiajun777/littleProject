@@ -26,10 +26,4 @@ spring:
     host: 106.14.83.8
     port: 6379
     password: redisroot
-  profiles:
-    active: @project.dev@
 
-# logback 日志输出文件
-logging:
-  file: logback-demo.log
-  config: classpath:@project.dev@/logback-spring.xml

@@ -47,5 +47,124 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <!--打包命令时用的-P后边的和dev和id保持一致，也就是-P后的id为什么，打war包时，就打的那个文件中的数据库连接
+            ：mvn clean package -Dmaven.test.skip=true -Pdev-->
+            <id>dev</id>
+            <properties>
+                <!--与 <directory>src/main/resources/${project.env}</directory> 中的${project.env}保持一致-->
+                <!--文件夹的名字dev test prop与dev一样-->
+                <project.env>dev</project.env>
+            </properties>
+            <activation>
+            <!--在打包的时候什么都不选，默认是这个-->
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <project.env>test</project.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <!--文件夹的名字dev test prop与dev一样-->
+                <project.env>pro</project.env>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <properties>
+        <docker.image.prefix>user_demo</docker.image.prefix>
+    </properties>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!-- maven打包插件 end -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>user-demo</warName>
+                </configuration>
+            </plugin>
+        <!--这个插件是将所有的包打在一起-->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <!-- 这个插件主要是对打的包解压到dependency目录下 -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>unpack</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>unpack</goal>
+                    </goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>${project.artifactId}</artifactId>
+                                <version>${project.version}</version>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+        <!-- 根据 dockerfile 构建镜像的mvn插件 -->
+        <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>dockerfile-maven-plugin</artifactId>
+            <version>1.4.9</version>
+            <configuration>
+                <!-- 镜像名 -->
+                <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                <!-- tag：默认使用当前版本 -->
+                <tag>${project.version}</tag>
+            </configuration>
+        </plugin>
+
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application-${project.env}.yml</include>
+                    <include>application.yml</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+
 
 </project>

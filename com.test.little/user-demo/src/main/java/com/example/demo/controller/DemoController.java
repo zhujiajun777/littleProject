@@ -40,7 +40,7 @@ public class DemoController {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @RequestMapping(value = "/com/example/demo" , method = RequestMethod.POST)
+    @PostMapping(value = "/com/example/demo")
     @ResponseBody
     @ApiOperation(value = "user对象的测试类" , notes = "入参为map,可以为空")
     public DemoUser demo(@ApiJsonObject(name = "RequestModel", value = {
@@ -68,7 +68,7 @@ public class DemoController {
         return new DemoUser();
     }
 
-    @RequestMapping(value = {"/","/index"} , method = RequestMethod.GET)
+    @GetMapping(value = {"/","/index"})
     @ApiOperation(value = "首页" , notes = "进入首页")
     public String toIndex(Model model){
 
@@ -77,25 +77,25 @@ public class DemoController {
         return "index";
     }
 
-    @RequestMapping(value = "/user/add" , method = RequestMethod.GET)
+    @GetMapping(value = "/user/add")
     @ApiOperation(value = "add页面" , notes = "add页面")
     public String toAdd(){
         return "user/add";
     }
 
-    @RequestMapping(value = "/user/update" , method = RequestMethod.GET)
+    @GetMapping(value = "/user/update")
     @ApiOperation(value = "update页面" , notes = "update页面")
     public String toUpdate(){
         return "user/update";
     }
 
-    @RequestMapping(value = "/toLogin" , method = RequestMethod.GET)
+    @GetMapping(value = "/toLogin")
     @ApiOperation(value = "进入登陆页面" , notes = "进入登陆页面")
     public String toLogin(){
         return "login";
     }
 
-    @RequestMapping(value = "/login" , method = RequestMethod.POST)
+    @GetMapping(value = "/login")
     @ApiOperation(value = "用户登陆" , notes = "用户登陆")
     public String login(@RequestParam String username ,
                         @RequestParam String password ,
@@ -120,7 +120,7 @@ public class DemoController {
         }
     }
 
-    @RequestMapping(value = "/noAuth" , method = RequestMethod.GET)
+    @GetMapping(value = "/noAuth")
     @ResponseBody
     @ApiOperation(value = "无权限" , notes = "无权限")
     public String unAuthorized(){

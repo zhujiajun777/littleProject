@@ -6,6 +6,9 @@ import com.example.demo.service.DemoUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * TODO: 类描述
  *
@@ -26,5 +29,10 @@ public class DemoUserServiceImpl implements DemoUserService {
     @Override
     public DemoUser queryUserByName(String userName) {
         return demoUserMapper.selectUserByName(userName);
+    }
+
+    @Override
+    public List<DemoUser> selectUserList(Map<String, Object> param) {
+        return demoUserMapper.selectUserList(param);
     }
 }

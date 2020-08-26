@@ -1,6 +1,9 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.mapper.SysUserMapper;
+import com.example.demo.mapper.UserRoleMappingMapper;
 import com.example.demo.service.UserRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,4 +14,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
+
+    @Autowired
+    private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private UserRoleMappingMapper userRoleMappingMapper;
+
 }

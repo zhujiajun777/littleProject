@@ -4,6 +4,8 @@ import com.example.demo.mapper.SysRoleMapper;
 import com.example.demo.mapper.UserRoleMappingMapper;
 import com.example.demo.model.SysRole;
 import com.example.demo.service.UserRoleService;
+import com.example.demo.utils.Result;
+import com.example.demo.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,12 +68,13 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int insertRoleMapping(Map<String, Object> paramMap) {
+    public Result insertRoleMapping(Map<String, Object> paramMap) {
         String userCode = (String) paramMap.get("userCode");
         int delNum = userRoleMappingMapper.deleteByUserCode(userCode);
         log.info("用户 :" + userCode + "的角色映射关系已删除 ! " + delNum);
         paramMap.put("createTime",new Date());
-        return userRoleMappingMapper.insertRoleMapping(paramMap);
+        userRoleMappingMapper.insertRoleMapping(paramMap);
+        return ResultUtils.sucess("角色配置成功!");
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.SysRole;
+import com.example.demo.utils.Result;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,6 @@ public interface UserRoleService {
      * @param paramMap
      * @return
      */
-    int insertRoleMapping(Map<String,Object> paramMap);
+    Result insertRoleMapping(Map<String,Object> paramMap);
 
 }

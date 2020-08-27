@@ -1,7 +1,10 @@
 package com.example.demo.config;
 
 import com.example.demo.model.DemoUser;
+import com.example.demo.model.SysRole;
 import com.example.demo.service.DemoUserService;
+import com.example.demo.service.UserRoleService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -12,19 +15,21 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
- * TODO: 类描述
- *
+ * TODO: shiro授权与认证类
  * @author zhujiajun
  * @date 2020/8/4 11:17
  */
+@Slf4j
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
     private DemoUserService demoUserService;
 
+    @Autowired
+    private UserRoleService userRoleService;
 
     //授权
     @Override
@@ -46,10 +51,20 @@ public class UserRealm extends AuthorizingRealm {
 
         DemoUser user = (DemoUser) subject.getPrincipal();
 
-        info.addStringPermission(user.getPerms());
+        List<SysRole> roles = userRoleService.selectRoleByUserCode(user.getCode());
 
-        System.out.println(user.getUserName() + "执行了授权认证!");
+        StringBuilder sb = new StringBuilder();
+        for (SysRole role : roles) {
+            sb.append(role.getRoleName());
+            sb.append(",");
+        }
+        if (sb.length()>1){
+            sb.deleteCharAt(sb.length()-1);
+        }
+        info.addStringPermission(String.valueOf(sb));
 
+        log.info(user.getUserName() + "执行了授权认证!");
+        log.info(user.getUserName() + "权限为 : " + sb.toString());
         return info;
     }
 

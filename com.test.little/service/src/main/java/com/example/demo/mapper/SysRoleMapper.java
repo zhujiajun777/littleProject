@@ -1,18 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.mapper;
 
 import com.example.demo.model.SysRole;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * TODO: 类描述
- *
- * @author zhujiajun
- * @date 2020/8/26 15:55
- */
-public interface UserRoleService {
-
+public interface SysRoleMapper {
     int deleteByPrimaryKey(Long id);
 
     int insert(SysRole record);
@@ -26,5 +19,4 @@ public interface UserRoleService {
     int updateByPrimaryKey(SysRole record);
 
     List<SysRole> selectRoleByUserCode(String code);
-
 }

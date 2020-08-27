@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class SysUser implements Serializable {
+public class SysRole implements Serializable {
     private Long id;
 
     private String roleName;

@@ -2,8 +2,10 @@ package com.example.demo.mapper;
 
 import com.example.demo.model.UserRoleMapping;
 
+import java.util.Map;
+
 public interface UserRoleMappingMapper {
-    int deleteByPrimaryKey(Long id);
+    int deleteByUserCode(String userCode);
 
     int insert(UserRoleMapping record);
 
@@ -14,4 +16,7 @@ public interface UserRoleMappingMapper {
     int updateByPrimaryKeySelective(UserRoleMapping record);
 
     int updateByPrimaryKey(UserRoleMapping record);
+
+    int insertRoleMapping(Map<String,Object> paramMap);
+
 }

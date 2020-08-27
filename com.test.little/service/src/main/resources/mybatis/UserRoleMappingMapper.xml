@@ -20,10 +20,12 @@
     from user_role_mapping
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+
+  <delete id="deleteByUserCode" parameterType="java.lang.String" >
     delete from user_role_mapping
-    where id = #{id,jdbcType=BIGINT}
+    where user_code = #{userCode,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.example.demo.model.UserRoleMapping" >
     insert into user_role_mapping (id, user_code, role_code, 
       status, create_id, create_time, 
@@ -32,6 +34,7 @@
       #{status,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{delId,jdbcType=VARCHAR}, #{delTime,jdbcType=TIMESTAMP})
   </insert>
+
   <insert id="insertSelective" parameterType="com.example.demo.model.UserRoleMapping" >
     insert into user_role_mapping
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -87,6 +90,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.UserRoleMapping" >
     update user_role_mapping
     <set >
@@ -114,6 +118,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.example.demo.model.UserRoleMapping" >
     update user_role_mapping
     set user_code = #{userCode,jdbcType=VARCHAR},
@@ -125,4 +130,27 @@
       del_time = #{delTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <insert id="insertRoleMapping" parameterType="java.util.Map">
+    insert into user_role_mapping
+        (
+            user_code,
+            role_code,
+            tatus,
+            create_id,
+            create_time,
+            del_id,
+            del_time
+        )
+    values (
+      #{userCode,jdbcType=VARCHAR},
+      #{roleCode,jdbcType=VARCHAR},
+      #{status,jdbcType=VARCHAR},
+      #{createId,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{delId,jdbcType=VARCHAR},
+      #{delTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
 </mapper>

@@ -22,6 +22,7 @@
         <module>service</module>
         <module>redis</module>
         <module>swagger</module>
+        <module>common-util</module>
     </modules>
 
     <!-- 版本号信息 -->

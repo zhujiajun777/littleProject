@@ -17,6 +17,6 @@ public interface UserRoleMappingMapper {
 
     int updateByPrimaryKey(UserRoleMapping record);
 
-    int insertRoleMapping(Map<String,Object> paramMap);
+    int insertRoleMapping(Map<String, Object> paramMap);
 
 }

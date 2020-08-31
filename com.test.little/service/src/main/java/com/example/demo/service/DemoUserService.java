@@ -17,6 +17,6 @@ public interface DemoUserService {
 
     public DemoUser queryUserByName(String userName);
 
-    public List<DemoUser> selectUserList(Map<String,Object> param);
+    public List<DemoUser> selectUserList(Map<String, Object> param);
 
 }

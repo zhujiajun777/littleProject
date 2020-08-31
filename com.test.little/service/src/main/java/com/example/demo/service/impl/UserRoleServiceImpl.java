@@ -72,7 +72,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         String userCode = (String) paramMap.get("userCode");
         int delNum = userRoleMappingMapper.deleteByUserCode(userCode);
         log.info("用户 :" + userCode + "的角色映射关系已删除 ! " + delNum);
-        paramMap.put("createTime",new Date());
+        paramMap.put("createTime", new Date());
         userRoleMappingMapper.insertRoleMapping(paramMap);
         return ResultUtils.sucess("角色配置成功!");
     }

@@ -21,26 +21,32 @@ public class Result<T> implements Serializable {
     public String getReturnCode() {
         return returnCode;
     }
+
     public void setReturnCode(String returnCode) {
         this.returnCode = returnCode;
     }
+
     public String getReturnMsg() {
         return returnMsg;
     }
+
     public void setReturnMsg(String returnMsg) {
         this.returnMsg = returnMsg;
     }
+
     public T getData() {
         return data;
     }
+
     public void setData(T data) {
         this.data = data;
     }
+
     @Override
-    public String toString(){
-        if(data!=null) {
+    public String toString() {
+        if (data != null) {
             return "returnCode:" + returnCode + ",returnMsg:" + returnMsg + ",data:" + data;
-        }else {
+        } else {
             return "returnCode:" + returnCode + ",returnMsg:" + returnMsg;
         }
     }
@@ -59,17 +65,17 @@ public class Result<T> implements Serializable {
         this.returnMsg = returnMsg;
     }
 
-    public static Result successResult(Object object){
-        return new Result(ResultEnum.SUCCESS.getCode(),ResultEnum.SUCCESS.getMsg(),object);
+    public static Result successResult(Object object) {
+        return new Result(ResultEnum.SUCCESS.getCode(), ResultEnum.SUCCESS.getMsg(), object);
     }
 
-    public  static Result successResult(){
-        return new Result(ResultEnum.SUCCESS.getCode(),ResultEnum.SUCCESS.getMsg());
+    public static Result successResult() {
+        return new Result(ResultEnum.SUCCESS.getCode(), ResultEnum.SUCCESS.getMsg());
     }
 
 
-    public static Result failResult(ResultEnum resultEnum){
-        return new Result(resultEnum.getCode(),resultEnum.getMsg());
+    public static Result failResult(ResultEnum resultEnum) {
+        return new Result(resultEnum.getCode(), resultEnum.getMsg());
     }
 
 }

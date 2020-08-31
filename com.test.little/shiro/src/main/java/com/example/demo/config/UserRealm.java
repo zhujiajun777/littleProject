@@ -5,7 +5,6 @@ import com.example.demo.model.SysRole;
 import com.example.demo.service.DemoUserService;
 import com.example.demo.service.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -19,6 +18,7 @@ import java.util.List;
 
 /**
  * TODO: shiro授权与认证类
+ *
  * @author zhujiajun
  * @date 2020/8/4 11:17
  */
@@ -32,6 +32,11 @@ public class UserRealm extends AuthorizingRealm {
     private UserRoleService userRoleService;
 
     //授权
+
+    /**
+     * @param principalCollection
+     * @return AuthorizationInfo
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
@@ -39,16 +44,15 @@ public class UserRealm extends AuthorizingRealm {
 
         Subject subject = SecurityUtils.getSubject();
 
-//        Object userObject = subject.getPrincipal();
-//
-//        DemoUser user = new DemoUser();
-//
-//        try {
-//            PropertyUtils.copyProperties(user,userObject);
-//        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-//            e.printStackTrace();
-//        }
-
+        /*
+        Object userObject = subject.getPrincipal();
+        DemoUser user = new DemoUser();
+        try {
+            PropertyUtils.copyProperties(user,userObject);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        */
         DemoUser user = (DemoUser) subject.getPrincipal();
 
         List<SysRole> roles = userRoleService.selectRoleByUserCode(user.getCode());
@@ -58,8 +62,8 @@ public class UserRealm extends AuthorizingRealm {
             sb.append(role.getRoleName());
             sb.append(",");
         }
-        if (sb.length()>1){
-            sb.deleteCharAt(sb.length()-1);
+        if (sb.length() > 1) {
+            sb.deleteCharAt(sb.length() - 1);
         }
         info.addStringPermission(String.valueOf(sb));
 
@@ -69,21 +73,27 @@ public class UserRealm extends AuthorizingRealm {
     }
 
     //认证
+
+    /**
+     * @param authenticationToken
+     * @return AuthenticationInfo
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
         DemoUser user = demoUserService.queryUserByName(token.getUsername());
-        System.out.println( token.getUsername() + "执行了登陆认证!");
+        log.info(token.getUsername() + "执行了登陆认证!");
 
-        if (user==null){
-            //自动抛出异常
+        if (user == null) {
+            //自动抛出
             return null;
         }
 
         //shiro密码认证
-        return new SimpleAuthenticationInfo(user,user.getPassword(),getName());
+        return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
     }
 
 }

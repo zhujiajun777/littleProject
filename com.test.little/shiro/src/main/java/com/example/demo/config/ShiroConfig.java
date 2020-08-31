@@ -22,19 +22,19 @@ import java.util.Map;
 public class ShiroConfig {
 
     @Bean(name = "userRealm")
-    public UserRealm userRealm(){
+    public UserRealm userRealm() {
         return new UserRealm();
     }
 
     @Bean(name = "defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm")UserRealm userRealm ){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(userRealm());
         return securityManager;
     }
 
     @Bean(name = "shiroFilterFactoryBean")
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager")DefaultWebSecurityManager defaultWebSecurityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager") DefaultWebSecurityManager defaultWebSecurityManager) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(defaultWebSecurityManager);
 
@@ -45,12 +45,12 @@ public class ShiroConfig {
          *  perms   :   拥有对某个资源的权限才能访问
          *  role    :   拥有某个角色权限才能访问
          */
-        Map<String,String> filterMap = new LinkedHashMap<>();
+        Map<String, String> filterMap = new LinkedHashMap<>();
 
-        filterMap.put("/user/add","perms[add]");
-        filterMap.put("/user/update","perms[update]");
+        filterMap.put("/user/add", "perms[add]");
+        filterMap.put("/user/update", "perms[update]");
 
-        filterMap.put("/user/*","authc");
+        filterMap.put("/user/*", "authc");
 
         //添加具体的权限控制
         factoryBean.setFilterChainDefinitionMap(filterMap);

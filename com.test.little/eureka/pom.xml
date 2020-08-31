@@ -9,26 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service</artifactId>
+    <artifactId>eureka</artifactId>
 
     <dependencies>
-
+        <!-- Eureka 依赖 -->
         <dependency>
-            <groupId>little-common</groupId>
-            <artifactId>model</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>little-common</groupId>
-            <artifactId>common-util</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>little-common</groupId>
-            <artifactId>dataSource-config</artifactId>
-            <version>0.0.1</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>${eureka.version}</version>
         </dependency>
 
     </dependencies>

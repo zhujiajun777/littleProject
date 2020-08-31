@@ -20,5 +20,5 @@ public interface DemoUserMapper {
 
     DemoUser selectUserByName(String userName);
 
-    List<DemoUser> selectUserList(Map<String,Object> paramMap);
+    List<DemoUser> selectUserList(Map<String, Object> paramMap);
 }

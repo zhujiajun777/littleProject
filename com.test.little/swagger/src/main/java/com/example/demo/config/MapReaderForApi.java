@@ -23,6 +23,7 @@ import java.util.Map;
 
 /**
  * TODO: 将map入参匹配到swagger文档的工具类
+ *
  * @author zhujiajun
  * @date 2020/8/11 14:01
  */
@@ -48,7 +49,7 @@ public class MapReaderForApi implements ParameterBuilderPlugin {
             Optional<ApiJsonObject> optional = methodParameter.findAnnotation(ApiJsonObject.class);
             //根据参数上的ApiJsonObject注解中的参数动态生成Class
 
-            if (optional.isPresent()){
+            if (optional.isPresent()) {
 
                 String name = optional.get().name();
                 //model名称
@@ -74,7 +75,7 @@ public class MapReaderForApi implements ParameterBuilderPlugin {
     /**
      * 根据propertys中的值动态生成含有Swagger注解的javaBeen
      */
-    private Class createRefModel(ApiJsonProperty[] propertys , String name){
+    private Class createRefModel(ApiJsonProperty[] propertys, String name) {
         ClassPool pool = ClassPool.getDefault();
         CtClass ctClass = pool.makeClass(basePackage + name);
 
@@ -108,7 +109,7 @@ public class MapReaderForApi implements ParameterBuilderPlugin {
             ann.addMemberValue("example", new StringMemberValue(property.example(), constPool));
         }
         // int类型
-        if (ctField.getType().subclassOf(ClassPool.getDefault().get(Integer.class.getName()))){
+        if (ctField.getType().subclassOf(ClassPool.getDefault().get(Integer.class.getName()))) {
             ann.addMemberValue("example", new IntegerMemberValue(Integer.parseInt(property.example()), constPool));
         }
         // double类型
@@ -125,6 +126,7 @@ public class MapReaderForApi implements ParameterBuilderPlugin {
 
     /**
      * 参数类型
+     *
      * @param type
      * @return
      * @throws NotFoundException

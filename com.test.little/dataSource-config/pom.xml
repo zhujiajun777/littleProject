@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>com.test.little</artifactId>
+        <groupId>little-common</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dataSource-config</artifactId>
+
+    <properties>
+        <boot-mybatis.version>2.1.3</boot-mybatis.version>
+        <mysql-connect.version>8.0.20</mysql-connect.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- mysql-mybatis 相关依赖 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${boot-mybatis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connect.version}</version>
+        </dependency>
+        <!-- mysql-mybatis 相关依赖 -->
+
+    </dependencies>
+
+</project>

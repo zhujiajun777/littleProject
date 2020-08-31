@@ -1,156 +1,156 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.mapper.UserRoleMappingMapper" >
-  <resultMap id="BaseResultMap" type="com.example.demo.model.UserRoleMapping" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
-    <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="create_id" property="createId" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="del_id" property="delId" jdbcType="VARCHAR" />
-    <result column="del_time" property="delTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, user_code, role_code, status, create_id, create_time, del_id, del_time
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from user_role_mapping
-    where id = #{id,jdbcType=BIGINT}
-  </select>
+<mapper namespace="com.example.demo.mapper.UserRoleMappingMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.model.UserRoleMapping">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+        <result column="role_code" property="roleCode" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="create_id" property="createId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="del_id" property="delId" jdbcType="VARCHAR"/>
+        <result column="del_time" property="delTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_code, role_code, status, create_id, create_time, del_id, del_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from user_role_mapping
+        where id = #{id,jdbcType=BIGINT}
+    </select>
 
-  <delete id="deleteByUserCode" parameterType="java.lang.String" >
-    delete from user_role_mapping
-    where user_code = #{userCode,jdbcType=BIGINT}
-  </delete>
+    <delete id="deleteByUserCode" parameterType="java.lang.String">
+        delete from user_role_mapping
+        where user_code = #{userCode,jdbcType=BIGINT}
+    </delete>
 
-  <insert id="insert" parameterType="com.example.demo.model.UserRoleMapping" >
-    insert into user_role_mapping (id, user_code, role_code, 
-      status, create_id, create_time, 
-      del_id, del_time)
-    values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{delId,jdbcType=VARCHAR}, #{delTime,jdbcType=TIMESTAMP})
-  </insert>
+    <insert id="insert" parameterType="com.example.demo.model.UserRoleMapping">
+        insert into user_role_mapping (id, user_code, role_code,
+        status, create_id, create_time,
+        del_id, del_time)
+        values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR},
+        #{status,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{delId,jdbcType=VARCHAR}, #{delTime,jdbcType=TIMESTAMP})
+    </insert>
 
-  <insert id="insertSelective" parameterType="com.example.demo.model.UserRoleMapping" >
-    insert into user_role_mapping
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userCode != null" >
-        user_code,
-      </if>
-      <if test="roleCode != null" >
-        role_code,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="createId != null" >
-        create_id,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="delId != null" >
-        del_id,
-      </if>
-      <if test="delTime != null" >
-        del_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="userCode != null" >
-        #{userCode,jdbcType=VARCHAR},
-      </if>
-      <if test="roleCode != null" >
-        #{roleCode,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createId != null" >
-        #{createId,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="delId != null" >
-        #{delId,jdbcType=VARCHAR},
-      </if>
-      <if test="delTime != null" >
-        #{delTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
+    <insert id="insertSelective" parameterType="com.example.demo.model.UserRoleMapping">
+        insert into user_role_mapping
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userCode != null">
+                user_code,
+            </if>
+            <if test="roleCode != null">
+                role_code,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createId != null">
+                create_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="delId != null">
+                del_id,
+            </if>
+            <if test="delTime != null">
+                del_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userCode != null">
+                #{userCode,jdbcType=VARCHAR},
+            </if>
+            <if test="roleCode != null">
+                #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delId != null">
+                #{delId,jdbcType=VARCHAR},
+            </if>
+            <if test="delTime != null">
+                #{delTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.UserRoleMapping" >
-    update user_role_mapping
-    <set >
-      <if test="userCode != null" >
-        user_code = #{userCode,jdbcType=VARCHAR},
-      </if>
-      <if test="roleCode != null" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.UserRoleMapping">
+        update user_role_mapping
+        <set>
+            <if test="userCode != null">
+                user_code = #{userCode,jdbcType=VARCHAR},
+            </if>
+            <if test="roleCode != null">
+                role_code = #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                create_id = #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delId != null">
+                del_id = #{delId,jdbcType=VARCHAR},
+            </if>
+            <if test="delTime != null">
+                del_time = #{delTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.example.demo.model.UserRoleMapping">
+        update user_role_mapping
+        set user_code = #{userCode,jdbcType=VARCHAR},
         role_code = #{roleCode,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createId != null" >
         create_id = #{createId,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="delId != null" >
         del_id = #{delId,jdbcType=VARCHAR},
-      </if>
-      <if test="delTime != null" >
-        del_time = #{delTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        del_time = #{delTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.UserRoleMapping" >
-    update user_role_mapping
-    set user_code = #{userCode,jdbcType=VARCHAR},
-      role_code = #{roleCode,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      create_id = #{createId,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      del_id = #{delId,jdbcType=VARCHAR},
-      del_time = #{delTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-
-  <insert id="insertRoleMapping" parameterType="java.util.Map">
-    insert into user_role_mapping
+    <insert id="insertRoleMapping" parameterType="java.util.Map">
+        insert into user_role_mapping
         (
-            user_code,
-            role_code,
-            tatus,
-            create_id,
-            create_time,
-            del_id,
-            del_time
+        user_code,
+        role_code,
+        tatus,
+        create_id,
+        create_time,
+        del_id,
+        del_time
         )
-    values (
-      #{userCode,jdbcType=VARCHAR},
-      #{roleCode,jdbcType=VARCHAR},
-      #{status,jdbcType=VARCHAR},
-      #{createId,jdbcType=VARCHAR},
-      #{createTime,jdbcType=TIMESTAMP},
-      #{delId,jdbcType=VARCHAR},
-      #{delTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
+        values (
+        #{userCode,jdbcType=VARCHAR},
+        #{roleCode,jdbcType=VARCHAR},
+        #{status,jdbcType=VARCHAR},
+        #{createId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{delId,jdbcType=VARCHAR},
+        #{delTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
 
 </mapper>

@@ -32,7 +32,6 @@ public class SysManageController {
     @Autowired
     private UserRoleService userRoleService;
 
-
     @PostMapping(value = "/getRole")
     @ApiOperation(value = "获取用户角色" , notes = "获取用户角色")
     public Result getRoleListByUserCode(@RequestBody Map<String,Object> requestMap){
@@ -59,8 +58,7 @@ public class SysManageController {
         log.info("setRole input data : " + requestMap);
 
         try {
-
-            return ResultUtils.sucess("角色配置成功!");
+            return userRoleService.insertRoleMapping(requestMap);
         } catch (Exception e) {
             log.error("setRole error : " + e.getMessage(),e);
             return ResultUtils.error(ResultEnum.SYSTEM_ERROR);

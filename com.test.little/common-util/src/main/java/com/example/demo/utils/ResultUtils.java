@@ -3,8 +3,7 @@ package com.example.demo.utils;
 import com.example.demo.model.ResultEnum;
 
 /**
- * TODO: 类描述
- *
+ * TODO: Result返回信息封装类
  * @author zhujiajun
  * @date 2020/8/27 16:58
  */

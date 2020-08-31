@@ -4,6 +4,8 @@ import com.example.demo.config.ApiJsonObject;
 import com.example.demo.config.ApiJsonProperty;
 import com.example.demo.model.DemoUser;
 import com.example.demo.service.DemoUserService;
+import com.example.demo.utils.Result;
+import com.example.demo.utils.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -118,6 +120,30 @@ public class DemoController {
             model.addAttribute("msg","密码错误!");
             return "login";
         }
+    }
+
+    @GetMapping(value = "/logout")
+    @ApiOperation(value = "注销登陆" , notes = "注销登陆")
+    public String logout(){
+
+        log.info("user logout ! ");
+
+        try {
+            Subject subject = SecurityUtils.getSubject();
+            //如果用户登陆了
+            if (subject.isAuthenticated()){
+
+                //执行登陆方法
+                subject.logout();
+
+                log.info( subject.getPrincipals() + " 用户登出成功!");
+                return "login";
+            }
+        } catch (Exception e) {
+            log.error("user logout error : " + e.getMessage(),e);
+            return "login";
+        }
+        return "login";
     }
 
     @GetMapping(value = "/noAuth")

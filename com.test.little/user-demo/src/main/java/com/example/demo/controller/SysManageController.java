@@ -33,34 +33,34 @@ public class SysManageController {
     private UserRoleService userRoleService;
 
     @PostMapping(value = "/getRole")
-    @ApiOperation(value = "获取用户角色" , notes = "获取用户角色")
-    public Result getRoleListByUserCode(@RequestBody Map<String,Object> requestMap){
+    @ApiOperation(value = "获取用户角色", notes = "获取用户角色")
+    public Result getRoleListByUserCode(@RequestBody Map<String, Object> requestMap) {
 
         log.info("getRole input data : " + requestMap);
 
         try {
             String code = (String) requestMap.get("code");
-            if (StringUtils.isEmpty(code)){
+            if (StringUtils.isEmpty(code)) {
                 return ResultUtils.error("参数不能为空!");
             }
-            return ResultUtils.sucess(userRoleService.selectRoleByUserCode(code)) ;
+            return ResultUtils.sucess(userRoleService.selectRoleByUserCode(code));
         } catch (Exception e) {
-            log.error("getRole error : " + e.getMessage(),e);
+            log.error("getRole error : " + e.getMessage(), e);
             return ResultUtils.error(ResultEnum.SYSTEM_ERROR);
         }
 
     }
 
     @PostMapping(value = "/setRole")
-    @ApiOperation(value = "配置用户角色" , notes = "配置用户角色")
-    public Result setUserRoleMapping(@RequestBody Map<String,Object> requestMap){
+    @ApiOperation(value = "配置用户角色", notes = "配置用户角色")
+    public Result setUserRoleMapping(@RequestBody Map<String, Object> requestMap) {
 
         log.info("setRole input data : " + requestMap);
 
         try {
             return userRoleService.insertRoleMapping(requestMap);
         } catch (Exception e) {
-            log.error("setRole error : " + e.getMessage(),e);
+            log.error("setRole error : " + e.getMessage(), e);
             return ResultUtils.error(ResultEnum.SYSTEM_ERROR);
         }
     }

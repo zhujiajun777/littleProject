@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 
-
 import com.example.demo.service.DemoUserService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +23,5 @@ public class CommonController {
     @Autowired
     private DemoUserService demoUserService;
 
-    
 
 }

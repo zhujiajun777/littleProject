@@ -22,7 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket docket(){
+    public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 //接口文档页面展示的信息
                 .apiInfo(apiInfo())
@@ -36,7 +36,7 @@ public class SwaggerConfig {
     }
 
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
 
         return new ApiInfoBuilder()
                 //标题
@@ -44,7 +44,7 @@ public class SwaggerConfig {
                 //描述
                 .description("一些用来测试的接口")
                 //作者
-                .contact(new Contact("zhujiajun777","https://github.com/zhujiajun777/littleProject","1038642703@qq.com"))
+                .contact(new Contact("zhujiajun777", "https://github.com/zhujiajun777/littleProject", "1038642703@qq.com"))
                 //版本号
                 .version("V 0.1")
                 .build();

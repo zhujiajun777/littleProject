@@ -51,6 +51,7 @@ public class ShiroConfig {
         filterMap.put("/user/update", "perms[update]");
 
         filterMap.put("/user/*", "authc");
+        filterMap.put("/hello", "authc");
 
         //添加具体的权限控制
         factoryBean.setFilterChainDefinitionMap(filterMap);

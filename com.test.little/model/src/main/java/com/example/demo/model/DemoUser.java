@@ -15,8 +15,6 @@ public class DemoUser implements Serializable {
 
     private String password;
 
-    private String perms;
-
     private Date updateTime;
 
 }

@@ -168,4 +168,14 @@ public class DemoController {
         return "未授权午发访问!";
     }
 
+    @GetMapping("/hello")
+    public String helloUser(){
+
+        log.info(String.valueOf(SecurityUtils.getSubject().getPrincipals()));
+
+        log.info(String.valueOf(SecurityUtils.getSubject().getPrincipal()));
+
+        return String.valueOf(SecurityUtils.getSubject());
+    }
+
 }

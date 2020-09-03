@@ -6,11 +6,10 @@
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="perms" jdbcType="VARCHAR" property="perms"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, code, user_name, password, perms, update_time
+        id, code, user_name, password, update_time
     </sql>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -27,10 +26,10 @@
 
     <insert id="insert" parameterType="com.example.demo.model.DemoUser">
         insert into demo_user (id, code, user_name,
-        password, perms, update_time
+        password, update_time
         )
         values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
-        #{password,jdbcType=VARCHAR}, #{perms,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+        #{password,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
         )
     </insert>
 
@@ -49,9 +48,6 @@
             <if test="password != null">
                 password,
             </if>
-            <if test="perms != null">
-                perms,
-            </if>
             <if test="updateTime != null">
                 update_time,
             </if>
@@ -68,9 +64,6 @@
             </if>
             <if test="password != null">
                 #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="perms != null">
-                #{perms,jdbcType=VARCHAR},
             </if>
             <if test="updateTime != null">
                 #{updateTime,jdbcType=TIMESTAMP},
@@ -90,9 +83,6 @@
             <if test="password != null">
                 password = #{password,jdbcType=VARCHAR},
             </if>
-            <if test="perms != null">
-                perms = #{perms,jdbcType=VARCHAR},
-            </if>
             <if test="updateTime != null">
                 update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
@@ -105,7 +95,6 @@
         set code = #{code,jdbcType=VARCHAR},
         user_name = #{userName,jdbcType=VARCHAR},
         password = #{password,jdbcType=VARCHAR},
-        perms = #{perms,jdbcType=VARCHAR},
         update_time = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=INTEGER}
     </update>

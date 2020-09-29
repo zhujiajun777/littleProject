@@ -27,6 +27,7 @@
         <module>demo-zuul</module>
         <module>eureka-producter-demo</module>
         <module>eureka-consumer-demo</module>
+        <module>elasticsearch-api-demo</module>
     </modules>
 
     <!-- 版本号信息 -->
@@ -38,6 +39,7 @@
         <eureka.version>2.0.4.RELEASE</eureka.version>
         <boot-mybatis.version>2.1.3</boot-mybatis.version>
         <mysql-connect.version>8.0.20</mysql-connect.version>
+        <elasticsearch.version>7.9.0</elasticsearch.version>
     </properties>
 
     <dependencies>
